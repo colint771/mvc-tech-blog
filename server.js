@@ -10,7 +10,7 @@ const hbs = exphbs.create({
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const session = { 
+const sess = { 
     seceret: process.env.DB_SECRET,
     cookie: {},
     resave: false,
@@ -26,7 +26,7 @@ const app =express();
 const PORT = process.env.PORT || 3001;
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
-app.use(session(session));
+app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
